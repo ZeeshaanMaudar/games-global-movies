@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { MoviesPage } from './pages/MoviesPage/MoviesPage';
+
 import './App.css';
 
 const App = () => {
   return (
-    <div className="App">
-      Main Movies App
+    <div>
+      <MoviesPage />
     </div>
   );
 }
