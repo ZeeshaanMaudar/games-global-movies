@@ -1,7 +1,10 @@
 import React from 'react';
+import { MoviesList } from '../../components/MoviesList/MoviesList';
 
 export const MoviesPage = () => {
   return (
-    <div>MoviesPage</div>
+    <div>
+      <MoviesList />
+    </div>
   )
 };
