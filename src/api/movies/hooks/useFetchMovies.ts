@@ -4,9 +4,13 @@ import axios, { AxiosError } from 'axios';
 import { MovieItem } from '../types';
 import { BASE_URL } from '../../constants';
 
-export const useFetchMovies = () => {
+import { filterMoviesByGenre } from '../../../shared/helpers/filterMoviesByGenre';
+import { useFetchMoviesProps } from './types';
+
+export const useFetchMovies = ({ sortByGenre }: useFetchMoviesProps) => {
 	const [loading, setLoading] = useState(false);
 	const [moviesList, setMoviesList] = useState<MovieItem[]>([]);
+	const [sortedMoviesList, setSortedMoviesList] = useState<MovieItem[]>([]);
 	const [error, setError] = useState<AxiosError>();
 
 	useEffect(() => {
@@ -21,7 +25,12 @@ export const useFetchMovies = () => {
         setError(error);
       })
       .finally(() => setLoading(false));
-	}, [])
+	}, []);
 
-	return { loading, moviesList, error };
+  useEffect(() => {
+    const sortedMoviesList = filterMoviesByGenre(moviesList, sortByGenre);
+    setSortedMoviesList(sortedMoviesList);
+  }, [moviesList, sortByGenre]);
+
+	return { loading, moviesList, sortedMoviesList, error };
 };
