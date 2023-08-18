@@ -1,17 +1,14 @@
-import React from 'react';
-import { Container } from '@mui/material';
+import React, { FC } from 'react';
 
 import { MovieCard } from '../MovieCard/MovieCard';
-import { useFetchMovies } from '../../api/movies';
 import { MovieItem } from '../../api/movies/types';
+import { MoviesListProps } from './types';
 
-export const MoviesList = () => {
-
-  const { loading, moviesList, error } = useFetchMovies();
+export const MoviesList: FC<MoviesListProps> = ({ moviesList }) => {
 
   return (
-    <Container maxWidth="md">
-      {moviesList.map((movie: MovieItem) => <MovieCard movie={movie} />)}
-    </Container>
+    <div>
+      {moviesList.map((movie: MovieItem) => <MovieCard key={movie.title} movie={movie} />)}
+    </div>
   )
 };
