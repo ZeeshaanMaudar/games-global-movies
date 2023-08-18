@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { MenuBarProps } from './types';
 
-import { SortCategoriesForm } from '../SortCategoriesForm';
+import { SortByGenreForm } from '../SortByGenreForm';
 
 import { AppBarStyled, BoxWrapper, ToolbarStyled } from './styles';
 
@@ -17,7 +17,7 @@ export const MenuBar: FC<MenuBarProps> = ({
 		<AppBarStyled position="sticky" color="inherit">
 			<ToolbarStyled>
 				<BoxWrapper>
-					<SortCategoriesForm
+					<SortByGenreForm
 						uniqueGenres={uniqueGenres}
 						sortByGenre={sortByGenre}
 						setSortByGenre={setSortByGenre}
