@@ -5,12 +5,13 @@ import { MovieItem } from '../types';
 import { BASE_URL } from '../../constants';
 
 import { filterMoviesByGenre } from '../../../shared/helpers/filterMoviesByGenre';
+import { searchMoviesByTitle } from '../../../shared/helpers/searchMoviesByTitle';
 import { useFetchMoviesProps } from './types';
 
-export const useFetchMovies = ({ sortByGenre }: useFetchMoviesProps) => {
+export const useFetchMovies = ({ sortByGenre, search }: useFetchMoviesProps) => {
 	const [loading, setLoading] = useState(false);
 	const [moviesList, setMoviesList] = useState<MovieItem[]>([]);
-	const [sortedMoviesList, setSortedMoviesList] = useState<MovieItem[]>([]);
+	const [updatedMoviesList, setUpdatedMoviesList] = useState<MovieItem[]>([]);
 	const [error, setError] = useState<AxiosError>();
 
 	useEffect(() => {
@@ -29,8 +30,9 @@ export const useFetchMovies = ({ sortByGenre }: useFetchMoviesProps) => {
 
   useEffect(() => {
     const sortedMoviesList = filterMoviesByGenre(moviesList, sortByGenre);
-    setSortedMoviesList(sortedMoviesList);
-  }, [moviesList, sortByGenre]);
+    const searchedMoviesList = searchMoviesByTitle(sortedMoviesList, search)
+    setUpdatedMoviesList(searchedMoviesList);
+  }, [moviesList, sortByGenre, search]);
 
-	return { loading, moviesList, sortedMoviesList, error };
+	return { loading, moviesList, updatedMoviesList, error };
 };

@@ -12,10 +12,15 @@ import { Wrapper } from './styles';
 
 export const MoviesPage: FC = () => {
   const [sortByGenre, setSortByGenre] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
 
-  const { loading, moviesList, sortedMoviesList, error } = useFetchMovies({ sortByGenre });
+  const { loading, moviesList, updatedMoviesList, error } = useFetchMovies({ sortByGenre, search });
 
   const uniqueGenres = getUniqueGenres(moviesList);
+
+  const handleSearch = (event: any) => {
+    setSearch(event.target.value);
+  };
 
   return (
     <Wrapper maxWidth="md">
@@ -25,8 +30,10 @@ export const MoviesPage: FC = () => {
         sortByGenre={sortByGenre}
         setSortByGenre={setSortByGenre}
         disabled={loading || !!error}
+        search={search}
+        handleSearch={handleSearch}
       />
-      <MoviesList moviesList={sortedMoviesList} />
+      <MoviesList moviesList={updatedMoviesList} />
     </Wrapper>
   )
 };

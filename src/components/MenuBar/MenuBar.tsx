@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { MenuBarProps } from './types';
 
 import { SortByGenreForm } from '../SortByGenreForm';
+import { SearchBar } from '../SearchBar';
 
 import { AppBarStyled, BoxWrapper, ToolbarStyled } from './styles';
 
@@ -11,6 +12,8 @@ export const MenuBar: FC<MenuBarProps> = ({
 	sortByGenre,
 	setSortByGenre,
 	disabled,
+	search,
+	handleSearch,
 }) => {
 
   return (
@@ -24,6 +27,7 @@ export const MenuBar: FC<MenuBarProps> = ({
 						disabled={disabled}
 					/>
 				</BoxWrapper>
+				<SearchBar search={search} handleSearch={handleSearch} />
 			</ToolbarStyled>
 		</AppBarStyled>
 	);
