@@ -20,7 +20,6 @@ export const useFetchMovies = ({ sortByGenre, search }: useFetchMoviesProps) => 
     axios.get(endpoint)
       .then(response => {
         setMoviesList(response.data.movies);
-				setLoading(false);
       })
       .catch((error: AxiosError) => {
         setError(error);
