@@ -5,7 +5,7 @@ import { MenuBarProps } from './types';
 import { SortByGenreForm } from '../SortByGenreForm';
 import { SearchBar } from '../SearchBar';
 
-import { AppBarStyled, BoxWrapper, ToolbarStyled } from './styles';
+import { AppBarStyled, ToolbarStyled } from './styles';
 
 export const MenuBar: FC<MenuBarProps> = ({
 	uniqueGenres,
@@ -19,14 +19,12 @@ export const MenuBar: FC<MenuBarProps> = ({
   return (
 		<AppBarStyled position="sticky" color="inherit">
 			<ToolbarStyled>
-				<BoxWrapper>
-					<SortByGenreForm
-						uniqueGenres={uniqueGenres}
-						sortByGenre={sortByGenre}
-						setSortByGenre={setSortByGenre}
-						disabled={disabled}
-					/>
-				</BoxWrapper>
+				<SortByGenreForm
+					uniqueGenres={uniqueGenres}
+					sortByGenre={sortByGenre}
+					setSortByGenre={setSortByGenre}
+					disabled={disabled}
+				/>
 				<SearchBar search={search} handleSearch={handleSearch} />
 			</ToolbarStyled>
 		</AppBarStyled>

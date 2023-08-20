@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { Card, Divider, CardContent, Typography } from '@mui/material';
+import { Divider, CardContent, Typography } from '@mui/material';
 
 import { MovieCardProps } from './types';
-import { CategoryWrapper, SubTitle } from './styles';
+import { CardWrapper, CategoryWrapper, SubTitle } from './styles';
 
 export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <CardWrapper>
       <CardContent>
         <Typography variant="h5" component="div">{movie.title}</Typography>
         <Divider />
@@ -31,6 +31,6 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
           <Typography variant="body2">{movie.rating}</Typography>
         </CategoryWrapper>
       </CardContent>
-    </Card>
+    </CardWrapper>
   )
 };

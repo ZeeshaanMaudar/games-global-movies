@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import { Typography } from '@mui/material';
 
 import { useFetchMovies } from '../../api/movies';
 
@@ -8,7 +7,7 @@ import { MoviesList } from '../../components/MoviesList/MoviesList';
 
 import { getUniqueGenres } from '../../shared/helpers/getUniqueGenres';
 
-import { Wrapper } from './styles';
+import { Wrapper, Title } from './styles';
 
 export const MoviesPage: FC = () => {
   const [sortByGenre, setSortByGenre] = useState<string>('');
@@ -24,7 +23,7 @@ export const MoviesPage: FC = () => {
 
   return (
     <Wrapper maxWidth="md">
-      <Typography variant="h2" component="div">Movies</Typography>
+      <Title variant="h2">Movies</Title>
       <MenuBar
         uniqueGenres={uniqueGenres}
         sortByGenre={sortByGenre}
