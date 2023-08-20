@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 
 import { MovieItem } from '../types';
-import { BASE_URL } from '../../constants';
+import { endpoint } from '../../constants';
 
 import { filterMoviesByGenre } from '../../../shared/helpers/filterMoviesByGenre';
 import { searchMoviesByTitle } from '../../../shared/helpers/searchMoviesByTitle';
@@ -17,9 +17,9 @@ export const useFetchMovies = ({ sortByGenre, search }: useFetchMoviesProps) => 
 	useEffect(() => {
 		setLoading(true)
 
-    axios.get(`${BASE_URL}/movies`)
+    axios.get(endpoint)
       .then(response => {
-        setMoviesList(response.data);
+        setMoviesList(response.data.movies);
 				setLoading(false);
       })
       .catch((error: AxiosError) => {
